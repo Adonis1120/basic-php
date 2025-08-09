@@ -1,11 +1,6 @@
 <?php include_once '../partials/head.php' ?>
 <?php include_once '../partials/header.php' ?>
 
-<?php
-    include_once '../Classes/Order.php';
-    include_once '../data/order.php';
-?>
-
 <form method="POST">
     <div class="row">
         <div class="col">
