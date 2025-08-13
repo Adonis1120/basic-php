@@ -9,7 +9,7 @@ h1 {
 }
 
 p {
-    background-image: url("image.png");
+    //background-image: url("image.png");
     height: 500px;
     width: 500px
 }

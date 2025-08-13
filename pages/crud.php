@@ -1,5 +1,6 @@
 <?php include_once '../partials/head.php' ?>
 <?php include_once '../partials/header.php' ?>
+<?php include_once '../data/crud.php' ?>
 
 <form method="POST">
     <div class="row">
@@ -15,7 +16,12 @@
                         <div class="row">
                             <div class="col-6">
                                 <label class="form-lable">Meal</label>
-                                <input name="meal" class="form-control">
+                                <select class="form-select" aria-label="Default select example" name="meals">
+                                    <option selected>Open this select menu</option>
+                                    <?php foreach ($read_meals as $meal) { ?>
+                                        <option value="<?= $meal['id'] ?>"><?= $meal['name'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
 
                             <div class="col">

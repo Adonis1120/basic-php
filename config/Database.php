@@ -1,16 +1,20 @@
 <?php
     class Database {
-        protected $host = "host=localhost";
-        protected $database_name = "basic_php";
-        protected $username = "root";
-        protected $password = "";
+        private $host = "localhost";
+        private $database_name = "basic_php";
+        private $username = "root";
+        private $password = "";
 
-        public function getConnetion() {
-            $connection = new PDO('msql:host=' . $this->host . ';database=' . $this->database_name, 'username=' . $this->username , 'password=' . $this->password);
+        public $connection;
 
-            //try and catch
+        public function getConnection() {
+            try {
+                $this->connection = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->database_name, $this->username , $this->password);
+            } catch (PDOException $e) {
+                echo 'PDO Exception Error: ' . $e->getMessage();
+            }
 
-            return $connection;
+            return $this->connection;
         }
     }
 ?>

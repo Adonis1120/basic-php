@@ -1,12 +1,29 @@
-class Crud()
+<?php
 
-__construct()
-$db
+Class Crud {
+    protected $conn;
 
-read
+    public function __construct($db) {
+        $this->conn = $db;
+    }
 
-create
+    function read() {
+        $query = "SELECT * FROM meals";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
 
-edit
+        return $stmt;
+    }
 
-destroy
+    function create() {
+        
+    }
+
+    function update() {
+
+    }
+
+    function destroy() {
+        
+    }
+}
