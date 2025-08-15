@@ -1,89 +1,46 @@
 <?php include_once '../partials/head.php' ?>
 <?php include_once '../partials/header.php' ?>
 <?php include_once '../data/crud.php' ?>
-
-<form method="POST">
+    
+<form method="POST" class="m-4">
     <div class="row">
-        <div class="col">
-            <div class="card p-4 gap-4">
-                <div>
-                    <label class="form-lable">Name</label>
-                    <input name="name" class="form-control">
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-lable">Meal</label>
-                                <select class="form-select" aria-label="Default select example" name="meals">
-                                    <option selected>Open this select menu</option>
-                                    <?php foreach ($read_meals as $meal) { ?>
-                                        <option value="<?= $meal['id'] ?>"><?= $meal['name'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-
-                            <div class="col">
-                                <label class="form-lable">Qty</label>
-                                <input type="number" name="meal_qty" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-lable">Drinks</label>
-                                <input name="drink" class="form-control">
-                            </div>
-
-                            <div class="col">
-                                <label class="form-lable">Qty</label>
-                                <input type="number" name="drink_qty" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Compute</button>
-                </div>
-            </div>
+        <div class="col-6 mb-3">
+            <label for="name" class="form-label">Meal</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter meal" />
         </div>
-
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <?php if ($_POST && $error_message == "") { ?>
-                        <p>
-                            Name: <?= $name ?>
-                        </p>
-
-                        <p>
-                            Meal: <?= $meal_name ?>
-                            <?= $meal_qty . ' x ' . $meal_price . ' = ' . $meal_total ?>
-                        </p>
-
-                        <p>
-                            Drink: <?= $drink_name ?>
-                            <?= $drink_qty . ' x ' . $drink_price . ' = ' . $drink_total ?>
-                        </p>
-
-                        <p>
-                            Grand Total: <?= $grand_total ?>
-                        </p>
-                    <?php } else { ?>
-                        <p>
-                            Please make your order properly!
-                        </p>
-                    <?php } ?>
-                </div>
-            </div>
+        <div class="col-6 mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" name="price" class="form-control" placeholder="Enter price" />
         </div>
     </div>
+    <div class="d-flex align-items-end flex-column mb-3">
+        <button name="btn_save" type="submit" class="btn btn-primary justify-self-end">Save</button>
+    </div>
 </form>
+       
+<div class="m-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Meal</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            </form>
+            <?php foreach ($read_meals as $meal) { ?>  
+                    <tr>
+                    <td><?= $meal['name'] ?></td>
+                    <td><?= $meal['price'] ?></td>
+                    <td class="p-2">
+                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 
 <?php include_once '../partials/foot.php' ?>

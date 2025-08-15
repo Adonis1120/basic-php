@@ -1,6 +1,9 @@
 <?php
 
 Class Crud {
+    public $name;
+    public $price;
+    
     protected $conn;
 
     public function __construct($db) {
