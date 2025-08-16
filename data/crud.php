@@ -10,8 +10,23 @@ $crud = new Crud($db);
 
 $read_meals = $crud->read();
 
-if ($_POST) {
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $edit_meals = $crud->create();
+$message = "";
+
+if (isset($_POST['btn_save'])) {
+    if ($_POST['edit_id'] != "") {
+        $crud->id = $_POST['edit_id'];
+        $crud->name = $_POST['name'];
+        $crud->price = $_POST['price'];
+        $message = $crud->update();
+    } else {
+        $crud->name = $_POST['name'];
+        $crud->price = $_POST['price'];
+        $message = $crud->create();
+    }
+} elseif (isset($_POST['btn_edit'])) {
+    $crud->id = $_POST['id'];
+    $selected_meal = $crud->edit()->fetch();
+} elseif (isset($_POST['btn_delete'])) {
+    $crud->id = $_POST['id'];
+    $message = $crud->destroy();
 }
